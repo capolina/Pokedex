@@ -1,0 +1,11 @@
+.example-card {
+  max-width: 500px;
+}
+.mat-card-image {
+  width: calc(100% - 32px);
+}
+.title-tile {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
