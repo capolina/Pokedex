@@ -1,0 +1,8 @@
+<mat-sidenav-container class="pokedex-container">
+  <mat-sidenav mode="side" class="pokemon-list" opened>
+    <app-pokemon-list (changedId)="changedId($event)"></app-pokemon-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-pokemon-detail [pokemonId]="id" ></app-pokemon-detail>
+  </mat-sidenav-content>
+</mat-sidenav-container>

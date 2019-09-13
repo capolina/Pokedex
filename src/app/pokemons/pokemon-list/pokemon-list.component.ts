@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PokemonService} from '../pokemon.service';
 
 @Component({
@@ -7,6 +7,8 @@ import {PokemonService} from '../pokemon.service';
   styleUrls: ['./pokemon-list.component.scss']
 })
 export class PokemonListComponent implements OnInit {
+  @Output() changedId = new EventEmitter<number>();
+  public selectedId = 1;
   public pokemons: any = [];
   private offset = 0;
   private limit = 10;
@@ -20,6 +22,11 @@ export class PokemonListComponent implements OnInit {
         this.limit = pokemons.limit;
       }
     );
+  }
+
+  changeSelected(id: number) {
+    this.selectedId = id;
+    this.changedId.emit(id);
   }
 
   onScroll(): void {
