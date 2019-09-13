@@ -1,9 +1,5 @@
 .pokemon-list {
-  height: 100%;
-  overflow-y: scroll;
+  height: calc(100% - 65.5px);
+  overflow-y: auto;
   padding-top: 0px;
-}
-
-.pokemon-list-container {
-  height: 100%;
 }
