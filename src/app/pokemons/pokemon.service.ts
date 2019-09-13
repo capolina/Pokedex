@@ -10,9 +10,12 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
-  getPokemons(offset: number = 0, limit: number = 20): Observable<any> {
-    const params: HttpParams = new HttpParams().set('offset', '' + offset)
+  getPokemons(offset: number = 0, limit: number = 20, query: string = null): Observable<any> {
+    let params: HttpParams = new HttpParams().set('offset', '' + offset)
                                                .set('limit', '' + limit);
+    if (query){
+      params = params.set('search', query);
+    }
     return this.http.get<any>( PokemonService.pokedexApiUrl + '/pokemons', {params});
   }
 

@@ -11,7 +11,8 @@ export class PokemonListComponent implements OnInit {
   public selectedId = 1;
   public pokemons: any = [];
   private offset = 0;
-  private limit = 10;
+  private limit = 20;
+  private search = '';
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit() {
@@ -19,7 +20,6 @@ export class PokemonListComponent implements OnInit {
       pokemons => {
         this.pokemons = pokemons.data;
         this.offset = pokemons.offset;
-        this.limit = pokemons.limit;
       }
     );
   }
@@ -30,10 +30,21 @@ export class PokemonListComponent implements OnInit {
   }
 
   onScroll(): void {
-    this.pokemonService.getPokemons(this.offset + this.limit).subscribe(
+    this.reloadList();
+  }
+
+  changeSearch(value: string): void {
+    this.offset = 0;
+    this.pokemons = [];
+    this.search = value;
+    this.reloadList();
+  }
+
+  reloadList(): void {
+    this.pokemonService.getPokemons(this.offset, this.limit, this.search).subscribe(
       pokemons => {
         this.pokemons = this.pokemons.concat(pokemons.data);
-        this.offset = pokemons.offset;
+        this.offset = pokemons.offset + this.limit;
       }
     );
   }

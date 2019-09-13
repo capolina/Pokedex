@@ -1,6 +1,11 @@
-<mat-nav-list class="pokemon-list" infiniteScroll (scrolled)="onScroll()" [scrollWindow]="false">
-  <mat-list-item (click)="changeSelected(pokemon.id)" *ngFor="let pokemon of pokemons">
-    <img matListAvatar src="assets/img/sprites/{{pokemon.id}}.png" alt="{{pokemon.name}}">
-    <h3 matLine> {{pokemon.id}}. {{pokemon.name}} </h3>
-  </mat-list-item>
-</mat-nav-list>
+<div class="pokemon-list-container">
+  <mat-form-field>
+    <input (keyup)="changeSearch($event.target.value)" matInput placeholder="Search for a pokemon" value="">
+  </mat-form-field>
+  <mat-nav-list class="pokemon-list" infiniteScroll (scrolled)="onScroll()" [scrollWindow]="false">
+    <mat-list-item (click)="changeSelected(pokemon.id)" *ngFor="let pokemon of pokemons">
+      <img matListAvatar src="assets/img/sprites/{{pokemon.id}}.png" alt="{{pokemon.name}}">
+      <h3 matLine> {{pokemon.id}}. {{pokemon.name}} </h3>
+    </mat-list-item>
+  </mat-nav-list>
+</div>
