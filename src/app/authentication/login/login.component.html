@@ -1,0 +1,36 @@
+<div id="login">
+  <div id="login-form-wrapper">
+
+      <div id="login-form">
+
+      <div class="title">LOGIN TO YOUR ACCOUNT</div>
+
+      <form name="loginForm" [formGroup]="loginForm" (submit)="login()" novalidate>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+          <mat-icon matSuffix class="secondary-text">person</mat-icon>
+          <mat-error *ngIf="email.hasError('required') || email.hasError('email')">
+            Email is required and must be valid
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password">
+          <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+          <mat-error>
+            Password is required
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="accent" class="submit-button" aria-label="LOG IN"
+                [disabled]="loginForm.invalid">
+          LOGIN
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>

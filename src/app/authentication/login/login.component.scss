@@ -1,0 +1,27 @@
+#login-form-wrapper {
+  width    : 400px;
+  margin   : auto;
+
+  #login-form {
+    padding : 128px 48px 48px 48px;
+
+    .title {
+      font-size : 21px;
+      text-align: center;
+    }
+
+    form {
+      padding-top : 32px;
+
+      mat-form-field {
+        width : 100%;
+      }
+
+      .submit-button {
+        width   : 100%;
+        margin  : 16px auto;
+        display : block;
+      }
+    }
+  }
+}

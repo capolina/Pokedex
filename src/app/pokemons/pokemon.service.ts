@@ -1,25 +1,28 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {Pokemon} from '../models/pokemon.model';
+import {PokemonList} from '../models/pokemon-list.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
-  private static pokedexApiUrl = 'http://app-ec21e68e-3e55-42d7-b1ae-3eef7507a353.cleverapps.io';
+  private static pokedexApiUrl = `${environment.apiDomain}/pokemons`;
 
   constructor(private http: HttpClient) { }
 
-  getPokemons(offset: number = 0, limit: number = 20, query: string = null): Observable<any> {
+  getPokemons(offset: number = 0, limit: number = 20, query: string = null): Observable<PokemonList> {
     let params: HttpParams = new HttpParams().set('offset', '' + offset)
                                                .set('limit', '' + limit);
-    if (query){
+    if (query) {
       params = params.set('search', query);
     }
-    return this.http.get<any>( PokemonService.pokedexApiUrl + '/pokemons', {params});
+    return this.http.get<PokemonList>( PokemonService.pokedexApiUrl, {params});
   }
 
-  getPokemon(id: number): Observable<any> {
-    return this.http.get<any>( PokemonService.pokedexApiUrl + '/pokemons/' + id);
+  getPokemon(id: number): Observable<Pokemon> {
+    return this.http.get<Pokemon>( `${PokemonService.pokedexApiUrl}/${id}`);
   }
 }

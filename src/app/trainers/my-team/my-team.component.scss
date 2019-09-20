@@ -1,0 +1,38 @@
+#team-container {
+  display: flex;
+  max-width: 700px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.pokemon-card {
+  text-align: center;
+}
+
+.pokemon-img {
+  max-width: 200px;
+}
+
+.pokemon-delete {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.img-container:hover {
+  position: relative;
+  text-align: center;
+  filter: brightness(50%);
+  cursor: pointer;
+  .pokemon-delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mat-icon {
+    zoom: 3;
+  }
+}

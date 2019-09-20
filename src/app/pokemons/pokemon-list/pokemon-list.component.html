@@ -1,6 +1,10 @@
-<mat-form-field>
-  <input (keyup)="changeSearch($event.target.value)" matInput placeholder="Search for a pokemon" value="">
-</mat-form-field>
+<div class="search-wrapper">
+  <button mat-raised-button color="primary" *ngIf="!authenticationService.isAuthenticated()" routerLink="/login">Login</button>
+  <button mat-raised-button color="primary" *ngIf="authenticationService.isAuthenticated()" routerLink="/team">My Team</button>
+  <mat-form-field>
+    <input [formControl]="searchInput" matInput placeholder="Search for a pokemon" value="">
+  </mat-form-field>
+</div>
 <mat-nav-list class="pokemon-list" infiniteScroll (scrolled)="onScroll()" [scrollWindow]="false">
   <mat-list-item (click)="changeSelected(pokemon.id)" *ngFor="let pokemon of pokemons">
     <img matListAvatar src="assets/img/sprites/{{pokemon.id}}.png" alt="{{pokemon.name}}">

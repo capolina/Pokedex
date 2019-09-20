@@ -1,5 +1,11 @@
 .pokemon-list {
-  height: calc(100% - 65.5px);
+  height: calc(100% - 101.5px);
   overflow-y: auto;
   padding-top: 0px;
+}
+
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
