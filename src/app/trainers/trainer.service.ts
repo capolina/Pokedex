@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../environments/environment';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {PokemonList} from '../models/pokemon-list.model';
-import {Pokemon} from '../models/pokemon.model';
 
 @Injectable({
   providedIn: 'root'

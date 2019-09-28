@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {Token} from '../models/token.model';
+import {RefreshToken} from '../models/refresh-token.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,13 +34,16 @@ export class AuthenticationService {
     this.removeToken();
   }
 
-  refreshToken(model) {
-    return this.http.post(`${AuthenticationService.baseUrl}/refresh`, model);
+  refreshToken(): Observable<Token> {
+    if (this.isAuthenticated()) {
+      const refreshToken = new RefreshToken(this.token.refresh_token);
+      return this.http.post<Token>(`${AuthenticationService.baseUrl}/refresh`, refreshToken);
+    }
   }
 
-  setToken(token: Token) {
+  setToken(token: Token): void {
     this.token = token;
-    if (localStorage){
+    if (localStorage) {
       localStorage.setItem('token', JSON.stringify(token));
     }
   }
