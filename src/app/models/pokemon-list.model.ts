@@ -1,4 +1,4 @@
-import {PokedexItem} from './PokedexItem.model';
+import {PokedexItem} from './pokedex-item.model';
 
 export class PokemonList {
   data: PokedexItem[];

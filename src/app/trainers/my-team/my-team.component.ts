@@ -11,7 +11,6 @@ import {forkJoin} from 'rxjs';
 })
 export class MyTeamComponent implements OnInit {
   public pokemons: Pokemon[] = [];
-  private idList: number[] = [];
 
   constructor(private trainerService: TrainerService,
               private pokemonService: PokemonService) { }
@@ -27,15 +26,19 @@ export class MyTeamComponent implements OnInit {
   }
 
   retrievePokemons(idList: number[]): void {
-    this.idList = idList;
     const observables = idList.map(id => this.pokemonService.getPokemon(id));
     const observable = forkJoin(observables);
     observable.subscribe(pokemon => this.pokemons = pokemon);
   }
 
-  deletePokemon(deleteId: number): void {
-    const newTeam = this.idList.filter(id => id !== deleteId );
-    this.trainerService.setMyTeam(newTeam).subscribe(
+  deletePokemon(removedPokemon: Pokemon): void {
+    this.pokemons = this.pokemons.filter(pokemon => pokemon !== removedPokemon );
+    this.savePokemonList();
+  }
+
+  savePokemonList() {
+    const newTeamIds = this.pokemons.map(pokemon => pokemon.id);
+    this.trainerService.setMyTeam(newTeamIds).subscribe(
       () => this.loadMyTeam()
     );
   }

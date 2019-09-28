@@ -29,6 +29,10 @@ export class AuthenticationService {
     return this.http.post<Token>(`${AuthenticationService.baseUrl}/login`, model);
   }
 
+  logout(): void {
+    this.removeToken();
+  }
+
   refreshToken(model) {
     return this.http.post(`${AuthenticationService.baseUrl}/refresh`, model);
   }
@@ -37,6 +41,13 @@ export class AuthenticationService {
     this.token = token;
     if (localStorage){
       localStorage.setItem('token', JSON.stringify(token));
+    }
+  }
+
+  removeToken() {
+    this.token = null;
+    if (localStorage) {
+      localStorage.removeItem('token');
     }
   }
 

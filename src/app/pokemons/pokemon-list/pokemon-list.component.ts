@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PokemonService} from '../pokemon.service';
 import {MatSnackBar} from '@angular/material';
-import {PokedexItem} from '../../models/PokedexItem.model';
+import {PokedexItem} from '../../models/pokedex-item.model';
 import {FormControl} from '@angular/forms';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {AuthenticationService} from '../../authentication/authentication.service';

@@ -6,7 +6,6 @@ import {AuthenticationService} from './authentication.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-    navigation = false;
 
     constructor(private auth: AuthenticationService,
                 private router: Router) {}

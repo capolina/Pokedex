@@ -1,7 +1,7 @@
 <div style="margin-left: 24px">
 <h1>My team: </h1>
 <div id="team-container">
-  <div class="pokemon-card" (click)="deletePokemon(pokemon.id)" *ngFor="let pokemon of pokemons">
+  <div class="pokemon-card" (click)="deletePokemon(pokemon)" *ngFor="let pokemon of pokemons">
     <div class="img-container">
       <img class="pokemon-img" src="assets/img/official-artwork/{{pokemon.id}}.png">
       <div class="pokemon-delete">
@@ -10,7 +10,7 @@
     </div>
     <p>{{pokemon.name}}</p>
   </div>
-  <button *ngIf="idList.length<6" mat-fab><mat-icon>add</mat-icon></button>
+  <button *ngIf="pokemons.length<6" mat-fab><mat-icon>add</mat-icon></button>
 </div>
 <button mat-raised-button routerLink="/pokedex">Back to the pokedex</button>
 </div>
